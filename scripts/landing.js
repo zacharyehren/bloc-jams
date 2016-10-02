@@ -15,4 +15,3 @@ var animatePoints = function() {
 
 }; 
 
-animatePoints();
