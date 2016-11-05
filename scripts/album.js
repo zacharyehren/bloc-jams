@@ -204,11 +204,27 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $togglePlay = $('main-controls .play-pause');
+
+var togglePlayFromPlayerBar = function(){
+    if($togglePlay === playerBarPlayButton) {
+        currentlyPlayingSongNumber = pauseButtonTemplate;
+        $togglePlay.html(playerBarPauseButton);
+        currentSoundFile.play();
+    } else if ($togglePlay === playerBarPauseButton) {
+        currentlyPlayingSongNumber = playButtonTemplate;
+        $togglePlay.html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+};
+
+
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $togglePlay.click(togglePlayFromPlayerBar());
 });
 
 
