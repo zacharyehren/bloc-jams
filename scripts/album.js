@@ -130,7 +130,7 @@ var updateSeekBarWhileSongPlays = function() {
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
         // Assignment #1
-        setCurrentTimeInPlayerBar(currentTime);
+        setCurrentTimeInPlayerBar();
     }
 };
 
@@ -318,7 +318,7 @@ var setCurrentTimeInPlayerBar = function(currentTime) {
 
 // Assignment #2
 var setTotalTimeInPLayerBar = function(totalTime) {
-    $('.total-time').text('.song-item-duration');
+    $('.total-time').text(currentSoundFile.getDuration());
 };
 
 
