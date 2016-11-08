@@ -8,7 +8,7 @@ var setSong = function(songNumber) {
         formats: ['mp3'],
         preload: true
     });
-    //setVolume(currentVolume);
+    setVolume(currentVolume);
 };
 
 var seek = function(time) {
