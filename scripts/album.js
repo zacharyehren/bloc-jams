@@ -32,7 +32,8 @@ var createSongRow = function(songNumber, songName, songLength) {
         '<tr class="album-view-song-item">'
     + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
     + '  <td class="song-item-title">' + songName + '</td>'
-    + '  <td class="song-item-duration">' + songLength + '</td>'
+    // Assignment #3
+    + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
     + '</tr>'
     ;
     var $row = $(template);
@@ -128,6 +129,9 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
 
             updateSeekPercentage($seekBar, seekBarFillRatio);
+            
+            // Assignment #1
+            setCurrentTimeInPlayerBar(this.getTime());
         });
     }
 };
@@ -191,12 +195,12 @@ var setupSeekBars = function() {
 };
 
 var updatePlayerBarSong = function() {
-
+    // Assignment #2
+    setTotalTimeInPLayerBar(currentSongFromAlbum.duration)
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-
 }; 
 
 var trackIndex = function(album, song) {
@@ -306,6 +310,26 @@ var togglePlayFromPlayerBar = function() {
         $(this).html(playerBarPlayButton);
         currentSoundFile.pause();
     }
+};
+
+// Assignment #1
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    $('.current-time').text(filterTimeCode(currentTime));
+};
+
+// Assignment #2
+var setTotalTimeInPLayerBar = function(totalTime) {
+    $('.total-time').text(filterTimeCode(totalTime));
+};
+
+// Assignment #3
+var filterTimeCode = function(timeInSeconds) {
+    var totalSeconds = parseFloat(timeInSeconds);
+    var totalMinutes = Math.floor(totalSeconds / 60);
+    var finalSeconds = Math.floor(totalSeconds - totalMinutes * 60);
+    finalSeconds = ("0" + finalSeconds).slice(-2);
+    var finalSongLength = totalMinutes + ":" + finalSeconds;
+    return finalSongLength;
 };
 
 
